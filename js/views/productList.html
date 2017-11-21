@@ -1,0 +1,28 @@
+<div class="containerProduct" ng-controller="productListCtrl">
+
+    <div class="menuProduct">
+        <div class="collection">
+        <a class="collection-item" ng-click="selectCategory()">Home</a>
+        <a ng-repeat="item in data.products | orderBy:'category' | unique:'category'"
+           ng-click="selectCategory(item)" class="collection-item">
+            {{item}}
+        </a>
+            </div>
+    </div>
+
+    <div class="mainProduct">
+        <div class="catalog-item"  ng-repeat="item in data.products | filter:categoryFilterFn">
+
+                    <h1>{{item.name}}</h1>
+                    <h2>{{item.price | currency}}</h2>
+                    <h4>{{item.description}}</h4>
+                    <img src="img/products/{{item.id}}/1.jpg" alt="{{item.name}}" />
+                    <button class="button" ng-click="addProductToCart(item)">Añadir al carrito</button>
+
+
+
+
+        </div>
+    </div>
+
+</div>

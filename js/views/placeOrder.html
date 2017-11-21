@@ -1,0 +1,80 @@
+<style>
+    .ng-invalid { background-color: lightpink; }
+    .ng-valid { background-color: lightgreen; }
+    span.error { color: red; font-weight: bold; }
+</style>
+
+<h2>Check out.</h2>
+<p>Registra tu forma de pago y te enviaremos tus productos a la brevedad.</p>
+<form name="shippingForm" novalidate>
+    <div class="panel panel-default" ng-controller="productListCtrl">
+
+    <!-- Payment -->
+
+    <table><tr><td>
+        Elige tu forma de pago:
+    </td><td>
+        <ul>
+        <li><input type="radio" ng-model="selectedPayMethod" value="credit"> Tarjeta de credito</li>
+            <li><input type="radio" ng-model="selectedPayMethod" value="oxxo"> Oxxo</li>
+            <li><input type="radio" ng-model="selectedPayMethod" value="payPal"> Paypal</li>
+            <li><input type="radio" ng-model="selectedPayMethod" value="cash"> Efectivo</li></ul>
+    </td></tr></table>
+
+
+    <div id="creditCardPayment" ng-show="this.selectedPayMethod == 'credit'">
+<h5>Tarjeta de credito</h5>
+
+        <table>
+            <tr><td>Nombre del titular:</td><td> <input name="cardHolder" class="form-control" required /></td></tr>
+            <tr><td>Número de tarjeta:</td><td><input name="cardNumber" class="form-control" required /></td></tr>
+            <tr><td>Mes expiración:</td><td> <input name="cardExpiryMonth" class="form-control" required /></td></tr>
+            <tr><td>Año expiración:</td><td><input name="cardExpiryYear" class="form-control" required /></td></tr>
+            <tr><td>CVV</td><td><input name="cardCode" class="form-control" required /></td></tr>
+        </table>
+
+
+    </div>
+
+    <div id="OxxoPayment" ng-show="this.selectedPayMethod == 'oxxo'">
+        <h5>Pago en tiendas OXXO</h5>
+        <div class="form-group">
+            <label>Menciona al empleado: </label>
+            Pago de servicios a MyOnlineShop
+        </div>
+
+        <div class="form-group">
+            <label>Codigo de Pago:</label>
+            9700 0026 6857 3770
+        </div>
+
+    </div>
+    <div id="payPalPayment" ng-show="this.selectedPayMethod == 'payPal'">
+
+
+        <h5>PayPal</h5>
+
+        <table>
+            <tr><td>Email:</td><td><input name="emailPaypal" class="form-control" required /></td></tr>
+            <tr><td>Password</td><td><input name="passwordPaypal" class="form-control" required /></td></tr>
+            <tr><td></td><td><button class="button">Log In</button></td></tr>
+        </table>
+
+
+    </div>
+    <div id="cashPayment" ng-show="this.selectedPayMethod == 'cash'">
+
+        Paga en efectivo al momento de la entrega.
+
+    </div>
+
+    <!-- End Payment -->
+
+    <div class="text-center"  ng-show="this.selectedPayMethod != null">
+        <br><br>
+        <button ng-disabled="shippingForm.$invalid" ng-click="sendOrder(data.user)"
+                class="button">Completa tu orden</button>
+    </div>
+
+        </div>
+</form>

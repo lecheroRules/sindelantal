@@ -1,0 +1,9 @@
+<div class="alert alert-danger" ng-show="data.orderError">
+    Error ({{data.orderError.status}}). No fue posible registrar la orden.
+    <a href="#/placeorder" class="alert-link">Click aqui para intentarlo de nuevo</a>
+</div>
+<div class="well" ng-hide="data.orderError">
+    <h2>Registro de orden de compra exitosa!</h2>
+    Gracias por registrar tu orden. Te enviaremos tus compras a la brevedad.
+    Si necesitas contactarnos, usa la referencia {{data.orderId}}.
+</div>
